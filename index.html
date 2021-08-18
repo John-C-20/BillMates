@@ -9,14 +9,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="./dist/main.css" />
-        <title>weBill</title>
+        <title>Bill Mates</title>
     </head>
 
     <body>
         <script src="./dist/main.js"></script>
+
+        <div class="title">Bill Mates</div>
         <div class="container">
             <div class="box" id="items">
-                <div class="header" id="items">Menu</div>
+                <div class="header row" id="items">Menu</div>
                 <div class="content row" id="items">Content</div>
                 <div class="footer" id="items">
                     <div class="subtotal row" id="items">Subtotal</div>
@@ -26,10 +28,12 @@
                 </div>
             </div>
             <div class="box" id="users">
-                <div class="header" id="guests">Guests</div>
+                <div class="header row" id="guests">Guests</div>
             </div>
-            <button id="users">Add Guest</button> 
+            <button id="equal-split">Split Equally</button>
+            <button id="calculate">Calculate</button>
             <button id="items">Add Item</button>
+            <button id="users">Add Guest</button> 
         </div>
     </body>
 </html>
