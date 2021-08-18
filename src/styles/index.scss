@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(9, 1fr);
     grid-template-columns: repeat(10, 1fr);
     gap: 25px;
     height: 90%;
@@ -25,14 +25,14 @@
 .box {
     border: 1px solid black;
     grid-row-start: 1;
-    grid-row-end: 7;
+    grid-row-end: 8;
     background: rgb(238, 237, 237);
     border-radius: 10px;
 }
 
 .box#items {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: span 3;
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -60,31 +60,31 @@ button:hover {
 }
 
 button#equal-split {
-    grid-row-start: 7;
+    grid-row-start: 8;
     grid-row-end: span 1;
-    grid-column-start: 3;
-    grid-column-end: span 1;
+    grid-column-start: 1;
+    grid-column-end: span 3;
 }
 
 button#calculate {
-    grid-row-start: 7;
+    grid-row-start: 9;
     grid-row-end: span 1;
     grid-column-start: 1;
-    grid-column-end: span 2;
+    grid-column-end: span 3;
 }
 
 button#items {
-    grid-row-start: 7;
+    grid-row-start: 8;
     grid-row-end: span 1;
-    grid-column-start: 7;
-    grid-column-end: 9;
+    grid-column-start: 8;
+    grid-column-end: span 3;
 }
 
 button#users {
-    grid-row-start: 7;
+    grid-row-start: 9;
     grid-row-end: span 1;
-    grid-column-start: 9;
-    grid-column-end: 11;
+    grid-column-start: 8;
+    grid-column-end: span 3;
 }
 
 .header {
