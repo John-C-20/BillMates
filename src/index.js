@@ -33,6 +33,7 @@ function saveItem(e) {
     currentState.items.push(item)
     Modal.closeModal()
     console.log(currentState)
+    addItemToBill(item)
 }
 
 function saveUser(e) {
@@ -48,9 +49,27 @@ function saveUser(e) {
     console.log(currentState)
 }
 
-function update(){
-    // for each item in currentState.items, update the bill
-    // for each guest in guest, create a bill for them and update the guest section
+// function update(){
+//     // for each item in currentState.items, update the bill
+//     currentState.items.forEach(item => (
+//         addItemToBill(item)
+//     ))
+//     // for each guest in guest, create a bill for them and update the guest section
+// }
+
+function addItemToBill(item){
+    const itemList = document.querySelector("ul.content") 
+    const li = document.createElement('li')
+    li.className = "item"
+    li.innerHTML = `
+        <div>
+        ${item.name}
+        </div>
+        <div>
+        ${item.price}      
+        </div> 
+    `
+    itemList.appendChild(li)
 }
 
 
