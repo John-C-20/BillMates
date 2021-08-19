@@ -58,18 +58,17 @@ function saveUser(e) {
 // }
 
 function addItemToBill(item){
-    const itemList = document.querySelector("ul.content") 
-    const li = document.createElement('li')
-    li.className = "item"
-    li.innerHTML = `
-        <div>
+    const itemList = document.querySelector("table#items") 
+    const tr = document.createElement('tr')
+    tr.innerHTML = `
+        <td class="left" id="item-name">
         ${item.name}
-        </div>
-        <div>
+        </td>
+        <td class="right" id="item-price">
         ${item.price}      
-        </div> 
+        </td> 
     `
-    itemList.appendChild(li)
+    itemList.appendChild(tr)
 }
 
 
