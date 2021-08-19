@@ -1,21 +1,57 @@
 import "./styles/index.scss";
 import "./styles/reset.scss";
 import "./styles/modal.scss";
-import "./scripts/guest";
-import "./scripts/items";
-import "./scripts/modals";
+import Guest from "./scripts/guest";
+import Item from "./scripts/item";
+import * as Modal from "./scripts/modals";
 
-
-
-
-const currentState = {
+export const currentState = {
     items: [],
     guests: []
 }
 
+document.querySelector("button#items").addEventListener("click", () => {
+    Modal.addItemModal()
+    document.querySelector("button#submit").addEventListener("click", saveItem);
+});
 
+document.querySelector("button#users").addEventListener("click", () => {
+    Modal.addGuestModal()
+    document.querySelector("button#submit").addEventListener("click", saveUser);
 
+});
 
-function addItem(name, price) {
-    
+function saveItem(e) {
+    e.preventDefault();
+    const form = document.querySelector("form")
+    console.log(form)
+    const formData = new FormData(form)
+    const itemName = formData.get("item-name")
+    const itemPrice = formData.get("item-price")
+    const item = new Item(itemName, itemPrice)
+    console.log(item)
+    currentState.items.push(item)
+    Modal.closeModal()
+    console.log(currentState)
 }
+
+function saveUser(e) {
+    e.preventDefault();
+    const form = document.querySelector("form")
+    console.log(form)
+    const formData = new FormData(form)
+    const guestName = formData.get("guest-name")
+    const guest = new Guest(guestName)
+    console.log(guest)
+    currentState.guests.push(guest)
+    Modal.closeModal()
+    console.log(currentState)
+}
+
+function update(){
+    // for each item in currentState.items, update the bill
+    // for each guest in guest, create a bill for them and update the guest section
+}
+
+
+// window.currentState = currentState
