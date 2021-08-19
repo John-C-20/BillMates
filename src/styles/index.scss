@@ -101,6 +101,7 @@ button#users {
 
 .content {
     height: 100%;
+    overflow:auto;
 }
 
 table {
@@ -112,10 +113,12 @@ th {
     text-align: center;
     border-bottom: 1px solid black;
     padding: 2px 6px;
+    width: 50%;
 }
 
 td {
     padding: 2px 6px;
+    width: 50%;
 }
 
 .left {

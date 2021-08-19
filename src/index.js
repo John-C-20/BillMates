@@ -7,7 +7,11 @@ import * as Modal from "./scripts/modals";
 
 export const currentState = {
     items: [],
-    guests: []
+    guests: [],
+    subtotal: 0.00,
+    tip: 0.00,
+    tax: 0.00,
+    total: 0.00
 }
 
 document.querySelector("button#items").addEventListener("click", () => {
@@ -47,29 +51,67 @@ function saveUser(e) {
     currentState.guests.push(guest)
     Modal.closeModal()
     console.log(currentState)
+    addGuestToTable(guest)
 }
-
-// function update(){
-//     // for each item in currentState.items, update the bill
-//     currentState.items.forEach(item => (
-//         addItemToBill(item)
-//     ))
-//     // for each guest in guest, create a bill for them and update the guest section
-// }
 
 function addItemToBill(item){
     const itemList = document.querySelector("table#items") 
     const tr = document.createElement('tr')
     tr.innerHTML = `
-        <td class="left" id="item-name">
-        ${item.name}
-        </td>
-        <td class="right" id="item-price">
-        ${item.price}      
-        </td> 
+    <td class="left" id="item-name">
+    ${item.name}
+    </td>
+    <td class="right" id="item-price">
+    $${Number(item.price).toFixed(2)}      
+    </td> 
     `
     itemList.appendChild(tr)
+    
+    currentState.subtotal += Number(item.price)
+    const subtotal = document.querySelector(".subtotal > td.right") 
+    console.log(subtotal)
+    console.log(currentState.subtotal)
+    subtotal.innerHTML = `$${currentState.subtotal.toFixed(2)}`
 }
 
+function addGuestToTable(guest){
+    const list = document.querySelector("div.content#users") 
+    const div = document.createElement("div")
+    div.className = "box"
+    div.id = "user"
+    div.innerHTML = `
+        <div class="header row" id="users">${guest.name}</div>
+        <div class="content" id="users">
+            <table id="users">
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </table>
+        </div>
+        <div class="footer" id="users">
+            <table>
+                <tr class="subtotal">
+                    <td>Subtotal</td>
+                    <td class="right">$0.00</td>
+                </tr>
+
+                <tr class="tip">
+                    <td>Tip</td>
+                    <td class="right">$0.00</td>
+                </tr>
+                <tr class="tax">
+                    <td>Tax</td>
+                    <td class="right">$0.00</td>
+                </tr>
+                <tr class="total">
+                    <td>Total</td>
+                    <td class="right">$0.00</td>
+                </tr>
+            </table>
+        </div>
+    `
+    list.appendChild(div)
+}
 
 // window.currentState = currentState
