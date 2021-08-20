@@ -31,7 +31,7 @@
 }
 
 .box#items, .box#user {
-    grid-column-start: 1;
+    grid-column-start: 8;
     grid-column-end: span 3;
     display: flex;
     height: 100%;
@@ -40,8 +40,8 @@
 }
 
 .box#users {
-    grid-column-start: 4;
-    grid-column-end: 11;
+    grid-column-start: 1;
+    grid-column-end: span 7;
 }
 
 .row {
@@ -59,31 +59,43 @@ button:hover {
     cursor: pointer;
 }
 
-button#equal-split {
+button#users {
     grid-row-start: 8;
-    grid-row-end: span 1;
-    grid-column-start: 1;
-    grid-column-end: span 3;
-}
-
-button#calculate {
-    grid-row-start: 9;
     grid-row-end: span 1;
     grid-column-start: 1;
     grid-column-end: span 3;
 }
 
 button#items {
+    grid-row-start: 9;
+    grid-row-end: span 1;
+    grid-column-start: 1;
+    grid-column-end: span 3;
+}
+
+button#equal-split {
     grid-row-start: 8;
     grid-row-end: span 1;
     grid-column-start: 8;
     grid-column-end: span 3;
 }
 
-button#users {
+button#calculate {
     grid-row-start: 9;
     grid-row-end: span 1;
     grid-column-start: 8;
+    grid-column-end: span 3;
+}
+button#tip {
+    grid-row-start: 8;
+    grid-row-end: span 1;
+    grid-column-start: 4;
+    grid-column-end: span 3;
+}
+button#tax {
+    grid-row-start: 9;
+    grid-row-end: span 1;
+    grid-column-start: 4;
     grid-column-end: span 3;
 }
 
