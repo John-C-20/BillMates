@@ -45,7 +45,7 @@ export function addGuestModal() {
             <form>
                 <div id="guest-name">
                     <label for="guest-name">Guest Name</label>
-                    <input type="text" id="guest-name" name="guest-name" required>
+                    <input type="text" id="guest-name" name="guest-name" value="Untitled" placeholder="Enter a name" required>
                 </div>
     
                 <div>

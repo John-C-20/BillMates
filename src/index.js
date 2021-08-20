@@ -81,7 +81,7 @@ function addGuestToTable(guest){
     div.id = "user"
     div.innerHTML = `
         <div class="header row" id="users">${guest.name}</div>
-        <div class="content" id="users">
+        <div class="content" id="user">
             <table id="users">
                 <tr>
                     <th>Item</th>
@@ -89,7 +89,7 @@ function addGuestToTable(guest){
                 </tr>
             </table>
         </div>
-        <div class="footer" id="users">
+        <div class="footer" id="user">
             <table>
                 <tr class="subtotal">
                     <td>Subtotal</td>
