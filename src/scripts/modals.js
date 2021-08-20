@@ -10,7 +10,8 @@ export function closeModal() {
     el.parentNode.removeChild(el)
 }
 
-export function addItemModal() {
+export function addItemModal(props) {
+    const options = props.guests.map( guest => `<option value="${guest.name}">${guest.name}</option>`) 
     const div = document.createElement('div');
     div.className = "modal";
     div.innerHTML = `
@@ -25,6 +26,12 @@ export function addItemModal() {
                 <div id="item-price">
                     <label for="item-price">Price</label>
                     <input type="text" id="item-price" name="item-price" required>
+                </div>
+              <div id="item-guest">
+                    <label for="item-guest">Assign to guest</label>
+                    <select id="item-guest" name="item-guest">
+                        ${options}
+                    </select>
                 </div>
                 <div>
                     <button id="submit"">Add Item</button>

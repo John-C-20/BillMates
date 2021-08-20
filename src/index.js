@@ -15,7 +15,7 @@ export const currentState = {
 }
 
 document.querySelector("button#items").addEventListener("click", () => {
-    Modal.addItemModal()
+    Modal.addItemModal(currentState)
     document.querySelector("button#submit").addEventListener("click", saveItem);
 });
 
@@ -32,12 +32,14 @@ function saveItem(e) {
     const formData = new FormData(form)
     const itemName = formData.get("item-name")
     const itemPrice = formData.get("item-price")
+    const guest = formData.get("item-guest")
     const item = new Item(itemName, itemPrice)
     console.log(item)
     currentState.items.push(item)
     Modal.closeModal()
     console.log(currentState)
     addItemToBill(item)
+    addItemToGuest(item, guest)
 }
 
 function saveUser(e) {
@@ -74,6 +76,29 @@ function addItemToBill(item){
     subtotal.innerHTML = `$${currentState.subtotal.toFixed(2)}`
 }
 
+function addItemToGuest(item, guest) {
+    const user = currentState.guests.find(u => u.name == guest)
+    user.items.push(item)
+    const guestBill = document.querySelector(`.${guest}`)
+    const tr = document.createElement("tr")
+    tr.innerHTML = `
+    <td class="left" id="item-name">
+        ${item.name}
+    </td>
+    <td class="right" id="item-price">
+        $${Number(item.price).toFixed(2)}      
+    </td> 
+    `
+    guestBill.appendChild(tr)
+
+    let subtotal = 0 
+    user.items.forEach( item => subtotal += Number(item.price) )
+    console.log(subtotal)
+    const subtotalEl = document.querySelector(`.subtotal.${guest} > td.right`)
+    subtotalEl.innerHTML = `$${subtotal.toFixed(2)}`
+
+}
+
 function addGuestToTable(guest){
     const list = document.querySelector("div.content#users") 
     const div = document.createElement("div")
@@ -82,7 +107,7 @@ function addGuestToTable(guest){
     div.innerHTML = `
         <div class="header row" id="users">${guest.name}</div>
         <div class="content" id="user">
-            <table id="users">
+            <table class="${guest.name}" id="users ${guest.name}">
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
@@ -91,7 +116,7 @@ function addGuestToTable(guest){
         </div>
         <div class="footer" id="user">
             <table>
-                <tr class="subtotal">
+                <tr class="subtotal ${guest.name}" >
                     <td>Subtotal</td>
                     <td class="right">$0.00</td>
                 </tr>
