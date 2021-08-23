@@ -22,7 +22,15 @@ document.querySelector("button#items").addEventListener("click", () => {
 document.querySelector("button#users").addEventListener("click", () => {
     Modal.addGuestModal()
     document.querySelector("button#submit").addEventListener("click", saveUser);
+});
 
+document.querySelector("button#tip").addEventListener("click", () => {
+    Modal.addTipModal()
+    document.getElementById("tip15").addEventListener("click", Modal.toggleCustomTip)
+    document.getElementById("tip18").addEventListener("click", Modal.toggleCustomTip)
+    document.getElementById("tip20").addEventListener("click", Modal.toggleCustomTip)
+    document.getElementById("tip-custom").addEventListener("click", Modal.toggleCustomTip)
+    document.querySelector("button#submit").addEventListener("click", saveTip);
 });
 
 function saveItem(e) {
@@ -54,6 +62,34 @@ function saveUser(e) {
     Modal.closeModal()
     console.log(currentState)
     addGuestToTable(guest)
+}
+
+function saveTip(e) {
+    e.preventDefault();
+    const form = document.querySelector("form");
+    const formData = new FormData(form)
+    const tipRate = formData.get("tip-rate");
+    const tipAmt = formData.get("tip-amount");
+    console.log(formData)
+    if (tipRate === "custom") { splitCustomTip(tipAmt) }
+    else { applyTipRate(tipRate) };
+    Modal.closeModal();
+}
+
+function splitCustomTip(tipAmt) {
+    console.log(tipAmt)
+};
+
+function applyTipRate(tipRate) {
+    console.log(tipRate)
+    tipRate = parseFloat(tipRate) / 100.0
+    console.log(tipRate)
+    console.log(currentState.subtotal)
+    currentState.tip = Number(currentState.subtotal) * (tipRate)
+    console.log(currentState.tip)
+
+    const tip = document.querySelector(".tip > td.right")
+    tip.innerHTML = `$${currentState.tip.toFixed(2)}`
 }
 
 function addItemToBill(item){
