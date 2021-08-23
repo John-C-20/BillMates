@@ -13,7 +13,12 @@ export function closeModal() {
 export function addItemModal(props) {
     // verifications: 
     // item must belong to a guest 
-    const options = props.guests.map( guest => `<option value="${guest.name}">${guest.name}</option>`) 
+    // const options = props.guests.map( guest => `<option value="${guest.name}">${guest.name}</option>`) 
+    const options = props.guests.map( guest => 
+        `
+        <input type="checkbox" name="item-guests" id="checkbox-${guest.name}" value="${guest.name}">
+        <label for="item-guest">${guest.name}</label>
+        `) 
     const div = document.createElement('div');
     div.className = "modal";
     div.innerHTML = `
@@ -29,18 +34,20 @@ export function addItemModal(props) {
                     <label for="item-price">Price</label>
                     <input type="text" id="item-price" name="item-price" required>
                 </div>
-              <div id="item-guest">
-                    <label for="item-guest">Assign to guest</label>
-                    <select id="item-guest" name="item-guest">
-                        ${options}
-                    </select>
-                </div>
-                <div>
-                    <button id="submit"">Add Item</button>
-                </div>
-            </form>
-        </div>
-    `
+              <div id="item-guests">
+                Assign to guest(s): 
+                ${options}
+              </div>
+              <div>
+              <button id="submit"">Add Item</button>
+              </div>
+              </form>
+              </div>
+              `
+            //   <label for="item-guest">Assign to guest</label>
+            //   <select id="item-guest" name="item-guest">
+            //       ${options}
+            //   </select>
     document.body.appendChild(div)
     document.querySelector("input#item-name").focus()
 }

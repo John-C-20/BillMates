@@ -43,31 +43,28 @@ document.querySelector("button#calculate").addEventListener("click", calculate);
 function saveItem(e) {
     e.preventDefault();
     const form = document.querySelector("form")
-    console.log(form)
     const formData = new FormData(form)
     const itemName = formData.get("item-name")
     const itemPrice = formData.get("item-price")
-    const guest = formData.get("item-guest")
-    const item = new Item(itemName, itemPrice)
-    console.log(item)
-    currentState.items.push(item)
+    const guests = formData.getAll("item-guests")
+    const itemQty = guests.length
+    const item = new Item(itemName, Number(itemPrice * 1.0)/itemQty)
+    for (let i = 0; i < itemQty; i++) {
+        currentState.items.push(item)
+        addItemToBill(item)
+    }
+    guests.forEach( guest => addItemToGuest(item, guest))
     Modal.closeModal()
-    console.log(currentState)
-    addItemToBill(item)
-    addItemToGuest(item, guest)
 }
 
 function saveUser(e) {
     e.preventDefault();
     const form = document.querySelector("form")
-    console.log(form)
     const formData = new FormData(form)
     const guestName = formData.get("guest-name")
     const guest = new Guest(guestName)
-    console.log(guest)
     currentState.guests.push(guest)
     Modal.closeModal()
-    console.log(currentState)
     addGuestToTable(guest)
 }
 
@@ -77,7 +74,6 @@ function saveTip(e) {
     const formData = new FormData(form)
     const tipRate = formData.get("tip-rate");
     const tipAmt = Number(formData.get("tip-amount"));
-    console.log(formData)
     if (tipRate === "custom") { splitCustomTip(tipAmt) }
     else { applyTipRate(tipRate) };
     Modal.closeModal();
@@ -107,7 +103,6 @@ function splitTax(taxAmt) {
 }
 
 function splitCustomTip(tipAmt) {
-    console.log(tipAmt)
     currentState.tip = Number(tipAmt)
     const tip = document.querySelector(".tip > td.right")
     tip.innerHTML = `$${currentState.tip.toFixed(2)}`
@@ -122,13 +117,8 @@ function splitCustomTip(tipAmt) {
 };
 
 function applyTipRate(tipRate) {
-    console.log(tipRate)
     tipRate = parseFloat(tipRate) / 100.0
-    console.log(tipRate)
-    console.log(currentState.subtotal)
     currentState.tip = Number(currentState.subtotal) * (tipRate)
-    console.log(currentState.tip)
-
     const tip = document.querySelector(".tip > td.right")
     tip.innerHTML = `$${currentState.tip.toFixed(2)}`
 
@@ -154,8 +144,6 @@ function addItemToBill(item){
     
     currentState.subtotal += Number(item.price)
     const subtotal = document.querySelector(".subtotal > td.right") 
-    console.log(subtotal)
-    console.log(currentState.subtotal)
     subtotal.innerHTML = `$${currentState.subtotal.toFixed(2)}`
 }
 
@@ -176,7 +164,6 @@ function addItemToGuest(item, guest) {
 
     user.subtotal = 0
     user.items.forEach( item => user.subtotal += Number(item.price) )
-    console.log(user.subtotal)
     const subtotalEl = document.querySelector(`.subtotal.${guest} > td.right`)
     subtotalEl.innerHTML = `$${user.subtotal.toFixed(2)}`
 
