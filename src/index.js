@@ -33,6 +33,13 @@ document.querySelector("button#tip").addEventListener("click", () => {
     document.querySelector("button#submit").addEventListener("click", saveTip);
 });
 
+document.querySelector("button#tax").addEventListener("click", () => {
+    Modal.addTaxModal()
+    document.querySelector("button#submit").addEventListener("click", saveTax);
+})
+
+document.querySelector("button#calculate").addEventListener("click", calculate);
+
 function saveItem(e) {
     e.preventDefault();
     const form = document.querySelector("form")
@@ -69,15 +76,49 @@ function saveTip(e) {
     const form = document.querySelector("form");
     const formData = new FormData(form)
     const tipRate = formData.get("tip-rate");
-    const tipAmt = formData.get("tip-amount");
+    const tipAmt = Number(formData.get("tip-amount"));
     console.log(formData)
     if (tipRate === "custom") { splitCustomTip(tipAmt) }
     else { applyTipRate(tipRate) };
     Modal.closeModal();
 }
 
+function saveTax(e){
+    e.preventDefault();
+    const form = document.querySelector("form");
+    const formData = new FormData(form)
+    const taxAmt = Number(formData.get("tax-amount"));
+    splitTax(taxAmt)
+    Modal.closeModal();
+}
+
+function splitTax(taxAmt) {
+    currentState.tax = Number(taxAmt)
+    const tax = document.querySelector(".tax > td.right")
+    tax.innerHTML = `$${currentState.tax.toFixed(2)}`
+
+    currentState.guests.forEach(guest => {
+        const ratio = guest.subtotal * 1.0 / currentState.subtotal
+        const tax = (taxAmt * ratio).toFixed(2)
+        guest.tax = tax 
+        const guestTax = document.querySelector(`.tax.${guest.name} > td.right`)
+        guestTax.innerHTML = `$${guest.tax}`
+    })
+}
+
 function splitCustomTip(tipAmt) {
     console.log(tipAmt)
+    currentState.tip = Number(tipAmt)
+    const tip = document.querySelector(".tip > td.right")
+    tip.innerHTML = `$${currentState.tip.toFixed(2)}`
+
+    currentState.guests.forEach(guest => {
+        const ratio = guest.subtotal * 1.0 / currentState.subtotal 
+        const tip = (tipAmt * ratio).toFixed(2)
+        guest.tip = tip 
+        const guestTip = document.querySelector(`.tip.${guest.name} > td.right`)
+        guestTip.innerHTML = `$${guest.tip}`
+    })
 };
 
 function applyTipRate(tipRate) {
@@ -90,6 +131,12 @@ function applyTipRate(tipRate) {
 
     const tip = document.querySelector(".tip > td.right")
     tip.innerHTML = `$${currentState.tip.toFixed(2)}`
+
+    currentState.guests.forEach(guest => {
+        guest.tip = (guest.subtotal * tipRate).toFixed(2)
+        const guestTip = document.querySelector(`.tip.${guest.name} > td.right`)
+        guestTip.innerHTML = `$${guest.tip}` 
+    })
 }
 
 function addItemToBill(item){
@@ -127,11 +174,11 @@ function addItemToGuest(item, guest) {
     `
     guestBill.appendChild(tr)
 
-    let subtotal = 0 
-    user.items.forEach( item => subtotal += Number(item.price) )
-    console.log(subtotal)
+    user.subtotal = 0
+    user.items.forEach( item => user.subtotal += Number(item.price) )
+    console.log(user.subtotal)
     const subtotalEl = document.querySelector(`.subtotal.${guest} > td.right`)
-    subtotalEl.innerHTML = `$${subtotal.toFixed(2)}`
+    subtotalEl.innerHTML = `$${user.subtotal.toFixed(2)}`
 
 }
 
@@ -157,15 +204,15 @@ function addGuestToTable(guest){
                     <td class="right">$0.00</td>
                 </tr>
 
-                <tr class="tip">
+                <tr class="tip ${guest.name}">
                     <td>Tip</td>
                     <td class="right">$0.00</td>
                 </tr>
-                <tr class="tax">
+                <tr class="tax ${guest.name}">
                     <td>Tax</td>
                     <td class="right">$0.00</td>
                 </tr>
-                <tr class="total">
+                <tr class="total ${guest.name}">
                     <td>Total</td>
                     <td class="right">$0.00</td>
                 </tr>
@@ -173,6 +220,18 @@ function addGuestToTable(guest){
         </div>
     `
     list.appendChild(div)
+}
+
+function calculate(e) {
+    e.preventDefault();
+    currentState.total = currentState.subtotal + currentState.tip + currentState.tax
+    const total = document.querySelector(".total > td.right")
+    total.innerHTML = `$${currentState.total.toFixed(2)}`
+
+    currentState.guests.forEach(guest => {
+        const guestTotal = document.querySelector(`.total.${guest.name} > td.right`)
+        guestTotal.innerHTML = `$${guest.total}`
+    })
 }
 
 // window.currentState = currentState
