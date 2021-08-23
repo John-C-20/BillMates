@@ -230,7 +230,7 @@ function calculate(e) {
 
     currentState.guests.forEach(guest => {
         const guestTotal = document.querySelector(`.total.${guest.name} > td.right`)
-        guestTotal.innerHTML = `$${guest.total}`
+        guestTotal.innerHTML = `$${guest.total.toFixed(2)}`
     })
 }
 
