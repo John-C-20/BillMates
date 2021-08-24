@@ -14,13 +14,14 @@ export const currentState = {
     total: 0.00
 }
 
+
 document.querySelector("button#items").addEventListener("click", () => {
     Modal.addItemModal(currentState)
     document.querySelector("button#submit").addEventListener("click", saveItem);
 });
 
 document.querySelector("button#users").addEventListener("click", () => {
-    Modal.addGuestModal()
+    Modal.addGuestModal(currentState)
     document.querySelector("button#submit").addEventListener("click", saveUser);
 });
 

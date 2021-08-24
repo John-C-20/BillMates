@@ -15,10 +15,12 @@ export function addItemModal(props) {
     // item must belong to a guest 
     // const options = props.guests.map( guest => `<option value="${guest.name}">${guest.name}</option>`) 
     const options = props.guests.map( guest => 
-        `
+        `<div>
         <input type="checkbox" name="item-guests" id="checkbox-${guest.name}" value="${guest.name}">
         <label for="item-guest">${guest.name}</label>
+        <div>
         `) 
+    console.log("options", ...options)
     const div = document.createElement('div');
     div.className = "modal";
     div.innerHTML = `
@@ -36,7 +38,7 @@ export function addItemModal(props) {
                 </div>
               <div id="item-guests">
                 Assign to guest(s): 
-                ${options}
+                ${options.join("")}
               </div>
               <div>
               <button id="submit"">Add Item</button>
@@ -52,7 +54,7 @@ export function addItemModal(props) {
     document.querySelector("input#item-name").focus()
 }
 
-export function addGuestModal() {
+export function addGuestModal(props) {
     // verifications: 
     // name must start with a letter 
     // names must be unique 
@@ -65,7 +67,7 @@ export function addGuestModal() {
             <form>
                 <div id="guest-name">
                     <label for="guest-name">Guest Name</label>
-                    <input type="text" id="guest-name" name="guest-name" value="Untitled" required>
+                    <input type="text" id="guest-name" name="guest-name" value="guest${props.guests.length+1}" placeholder="Enter guest name" required>
                 </div>
     
                 <div>
