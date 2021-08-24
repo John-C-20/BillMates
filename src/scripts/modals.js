@@ -15,10 +15,11 @@ export function addItemModal(props) {
     // item must belong to a guest 
     // const options = props.guests.map( guest => `<option value="${guest.name}">${guest.name}</option>`) 
     const options = props.guests.map( guest => 
-        `<div>
+        `
+        <div>
         <input type="checkbox" name="item-guests" id="checkbox-${guest.name}" value="${guest.name}">
         <label for="item-guest">${guest.name}</label>
-        <div>
+        </div>
         `) 
     console.log("options", ...options)
     const div = document.createElement('div');
@@ -36,15 +37,17 @@ export function addItemModal(props) {
                     <label for="item-price">Price</label>
                     <input type="text" id="item-price" name="item-price" required>
                 </div>
-              <div id="item-guests">
-                Assign to guest(s): 
-                ${options.join("")}
-              </div>
-              <div>
+                <div id="item-guests">
+                    Assign to guest(s): 
+                    <div></div>
+                    <div></div>
+                    ${options.join("")}
+                </div>
+
               <button id="submit"">Add Item</button>
-              </div>
-              </form>
-              </div>
+
+            </form>
+        </div>
               `
             //   <label for="item-guest">Assign to guest</label>
             //   <select id="item-guest" name="item-guest">
@@ -69,10 +72,7 @@ export function addGuestModal(props) {
                     <label for="guest-name">Guest Name</label>
                     <input type="text" id="guest-name" name="guest-name" value="guest${props.guests.length+1}" placeholder="Enter guest name" required>
                 </div>
-    
-                <div>
-                    <button id="submit"">Add Guest</button>
-                </div>
+                <button id="submit"">Add Guest</button>
             </form>
         </div>
     `
