@@ -12,6 +12,7 @@
 .title {
     font-weight: 700;
     font-size: 50px;
+    font-family: 'Rampart One', cursive;
     text-align:center;
     background: rgb(22, 22, 22);
     color:rgb(209, 207, 207);
@@ -35,6 +36,7 @@
     grid-column-end: span 3;
     display: flex;
     height: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     justify-content: space-between;
 }
