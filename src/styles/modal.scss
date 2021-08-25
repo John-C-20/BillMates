@@ -29,7 +29,7 @@
 form {
   height: 100%;
   display:grid;
-  grid-template-rows: repeat(6,1fr);
+  grid-template-rows: repeat(5,1fr) 64px;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
@@ -65,4 +65,14 @@ div#item-guests {
   grid-row-start: 3
 }
 
-
+div#instructions h2{
+  text-align: center;
+}
+ 
+div#instructions {
+  grid-column: span 2;
+}
+div#instructions li{
+  padding: 6px;
+  grid-column: span 2;
+}

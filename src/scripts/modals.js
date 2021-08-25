@@ -138,3 +138,30 @@ export function addTaxModal() {
     `
     document.body.appendChild(div)
 }
+
+export function instructionsModal() {
+    const div = document.createElement('div');
+    div.className = "modal";
+    div.innerHTML = `
+        <div class="modal-screen">
+        </div>
+        <div class="modal-form">
+            <form>
+                <div id="instructions">
+                    <h2> How to Use </h2> 
+                    <ol>
+                        <li> Use the "Add Guest" button to add all recipients to the bill </li>
+                        <li> Next, add items to the bill and assign them to one or more guests </li> 
+                        <li> One all items have been added, press "Add Tip" to choose a tip rate or enter a custom tip amount </li> 
+                        <li> Add the tax amount displayed on your bill or receipt </li> 
+                        <li> Finally, press "Calculate" to calculate the total amount of your bill as well as the individual totals owed by each guest </li>
+                    </ol>
+                </div>
+    
+                <button id="submit">Done</button>
+
+            </form>
+        </div>
+    `
+    document.body.appendChild(div)
+}

@@ -41,6 +41,8 @@ document.querySelector("button#tax").addEventListener("click", () => {
 
 document.querySelector("button#calculate").addEventListener("click", calculate);
 
+document.querySelector("button#instructions").addEventListener("click", Modal.instructionsModal)
+
 function saveItem(e) {
     e.preventDefault();
     const form = document.querySelector("form")
