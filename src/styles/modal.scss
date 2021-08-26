@@ -43,6 +43,8 @@ button#submit {
 div#item-name {
   grid-column-start: 1;
   display:grid ;
+  position:relative;
+  top: 10px;
 }
 input#item-name {
   grid-row-start: 2;
@@ -51,6 +53,47 @@ input#item-name {
 div#item-price {
   grid-column-start: 2;
   display:grid;
+  position: relative; 
+  top: 10px;
+}
+
+div#tip-rate {
+  grid-column-start: 1;
+  grid-column: span 2;
+  position: relative; 
+  top: 10px;
+}
+
+div#guest-name {
+  grid-column: span 2;
+  position: relative; 
+  top: 10px;
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+}
+
+div#guest-name input[type=text]{
+  width: 50%;
+  align-self: center;
+  height: 27px;
+}
+
+div#tax-amount {
+  grid-column: span 2;
+  position: relative; 
+  top: 10px;
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+}
+
+div#tax-amount input[type=text]{
+  width: 50%;
+  align-self: center;
+  height: 27px;
 }
 
 input#item-price {
@@ -62,10 +105,10 @@ div#item-guests {
   grid-template-columns: repeat(3, 1fr);
   grid-column-start: 1; 
   grid-column-end: span 2;
-  grid-row-start: 3
+  grid-row-start: 3;
 }
 
-div#instructions h2{
+h2{
   text-align: center;
 }
  

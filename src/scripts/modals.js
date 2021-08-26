@@ -89,21 +89,29 @@ export function addTipModal() {
         <div class="modal-form">
             <form>
                 <div id="tip-rate">
-                    <div>Select Tip Rate</div>
-                    <input type="radio" id="tip15" name="tip-rate" value="15%">
-                    <label for="tip15">15%</label>
-                    <input type="radio" id="tip18" name="tip-rate" value="18%">
-                    <label for="tip18">18%</label>
-                    <input type="radio" id="tip20" name="tip-rate" value="20%">
-                    <label for="tip20">20%</label>
-                    <input type="radio" id="tip-custom" name="tip-rate" value="custom">
-                    <label for="tip-custom">Custom Amount</label>
-                    <input type="text" id="tip-amount" name="tip-amount" placeholder="Enter custom amount" disabled> 
+                    <h2>Select Tip Rate</h2>
+                    <div>
+                        <div>
+                            <input type="radio" id="tip15" name="tip-rate" value="15%">
+                            <label for="tip15">15%</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="tip18" name="tip-rate" value="18%">
+                            <label for="tip18">18%</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="tip20" name="tip-rate" value="20%">
+                            <label for="tip20">20%</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="tip-custom" name="tip-rate" value="custom">
+                            <label for="tip-custom">Custom Amount</label>
+                            <input type="text" id="tip-amount" name="tip-amount" placeholder="Enter custom amount" disabled> 
+                        </div>
+                    </div>
                 </div>
     
-                <div>
-                    <button id="submit"">Add Tip</button>
-                </div>
+                <button id="submit"">Add Tip</button>
             </form>
         </div>
     `
@@ -130,9 +138,7 @@ export function addTaxModal() {
                     <input type="text" id="tax-amount" name="tax-amount" placeholder="Enter tax amount" required>
                 </div>
     
-                <div>
-                    <button id="submit"">Add Tax</button>
-                </div>
+                <button id="submit"">Add Tax</button>
             </form>
         </div>
     `
@@ -150,11 +156,11 @@ export function instructionsModal() {
                 <div id="instructions">
                     <h2> How to Use </h2> 
                     <ol>
-                        <li> Use the "Add Guest" button to add all recipients to the bill </li>
-                        <li> Next, add items to the bill and assign them to one or more guests </li> 
-                        <li> One all items have been added, press "Add Tip" to choose a tip rate or enter a custom tip amount </li> 
-                        <li> Add the tax amount displayed on your bill or receipt </li> 
-                        <li> Finally, press "Calculate" to calculate the total amount of your bill as well as the individual totals owed by each guest </li>
+                        <li> Use the "Add Guest" button to add all recipients to the bill. </li>
+                        <li> Next, add items to the bill and assign them to one or more guests. </li> 
+                        <li> Once all items have been added, press "Add Tip" to choose a tip rate or enter a custom tip amount. </li> 
+                        <li> Add the tax amount displayed on your bill or receipt. </li> 
+                        <li> Finally, press "Calculate" to calculate the total amount of your bill as well as the individual totals owed by each guest. </li>
                     </ol>
                 </div>
     
