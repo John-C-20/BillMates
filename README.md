@@ -4,11 +4,11 @@ If you're someone who frequently covers the bill at social gatherings, this fron
 [Try it out!](https://john-c-20.github.io/BillMates)
 
 # Functionality and MVPs:
-Add guests to the bill
-Add individual items to the bill and assign them to one or more guests
-Choose a standard tip rate or enter a custom amount
-Enter the tax stated on the bill
-Calculate total amount owed for the bill and each individual guest
+* Add guests to the bill
+* Add individual items to the bill and assign them to one or more guests
+* Choose a standard tip rate or enter a custom amount
+* Enter the tax stated on the bill
+* Calculate total amount owed for the bill and each individual guest
 
 # Architecture and Technology:
 Javascript, HTML5, and CSS
