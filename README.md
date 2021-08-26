@@ -3,6 +3,9 @@ If you're someone who frequently covers the bill at social gatherings, this fron
 
 [Try it out!](https://john-c-20.github.io/BillMates)
 
+<img width="1438" alt="Screen Shot 2021-08-26 at 7 32 04 PM" src="https://user-images.githubusercontent.com/76513504/131048965-7e6e0b24-d911-42d2-abbf-c1cec0c3610a.png">
+
+
 # Functionality and MVPs:
 * Add guests to the bill
 * Add individual items to the bill and assign them to one or more guests
