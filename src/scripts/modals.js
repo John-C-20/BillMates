@@ -21,7 +21,6 @@ export function addItemModal(props) {
         <label for="item-guest">${guest.name}</label>
         </div>
         `) 
-    console.log("options", ...options)
     const div = document.createElement('div');
     div.className = "modal";
     div.innerHTML = `
