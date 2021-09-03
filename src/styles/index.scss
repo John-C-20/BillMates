@@ -19,8 +19,8 @@
     height: 10%;
     box-sizing: border-box;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .box {
@@ -162,4 +162,13 @@ td {
 
 .total {
     font-weight: 600;
+}
+
+.icons {
+}
+
+.icons a {
+    color: #d1cfcf;
+    position: relative;
+    right: 20px;
 }
